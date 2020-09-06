@@ -5,6 +5,7 @@ import br.fatec.app.modules.v1.usuario.entity.UsuarioEntity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity(name = "notaFiscal")
@@ -27,7 +28,16 @@ public class NotaFiscalEntity {
     private int serie;
 
     @ManyToOne
-    private FornecedorEntity fornecedorEntity;
+    private FornecedorEntity fornecedor;
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JoinColumn(
+            name = "idNotaFiscal"
+    )
+    private List<ItemNotaFiscalEntity> itens;
 
     @Column(
             name = "ativo",
@@ -60,12 +70,12 @@ public class NotaFiscalEntity {
         this.serie = serie;
     }
 
-    public FornecedorEntity getFornecedorEntity() {
-        return this.fornecedorEntity;
+    public FornecedorEntity getFornecedor() {
+        return this.fornecedor;
     }
 
-    public void setFornecedorEntity(FornecedorEntity fornecedorEntity) {
-        this.fornecedorEntity = fornecedorEntity;
+    public void setFornecedor(FornecedorEntity fornecedor) {
+        this.fornecedor = fornecedor;
     }
 
     public boolean isAtivo() {

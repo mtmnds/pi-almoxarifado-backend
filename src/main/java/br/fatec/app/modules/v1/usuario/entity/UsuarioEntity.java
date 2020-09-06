@@ -1,6 +1,8 @@
 package br.fatec.app.modules.v1.usuario.entity;
 
 
+import br.fatec.app.modules.v1.perfil.entity.PerfilEntity;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -35,6 +37,9 @@ public class UsuarioEntity {
             nullable = false
     )
     private String senha;
+
+    @ManyToOne
+    private PerfilEntity perfil;
 
     @Column(
             name = "ativo",
@@ -81,6 +86,14 @@ public class UsuarioEntity {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public PerfilEntity getPerfil() {
+        return this.perfil;
+    }
+
+    public void setPerfil(PerfilEntity perfil) {
+        this.perfil = perfil;
     }
 
     public boolean isAtivo() {

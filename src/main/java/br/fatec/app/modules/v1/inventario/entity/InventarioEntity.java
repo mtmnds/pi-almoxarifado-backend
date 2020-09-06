@@ -38,6 +38,9 @@ public class InventarioEntity {
     )
     private Date dataFim;
 
+    @ManyToOne
+    private UsuarioEntity usuarioCriacao;
+
     @Column(
             name = "ativo",
             nullable = false
@@ -91,6 +94,14 @@ public class InventarioEntity {
 
     public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
+    }
+
+    public UsuarioEntity getUsuarioCriacao() {
+        return this.usuarioCriacao;
+    }
+
+    public void setUsuarioCriacao(UsuarioEntity usuarioCriacao) {
+        this.usuarioCriacao = usuarioCriacao;
     }
 
     public boolean isAtivo() {

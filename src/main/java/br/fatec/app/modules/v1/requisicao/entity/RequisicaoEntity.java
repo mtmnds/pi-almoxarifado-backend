@@ -6,6 +6,7 @@ import br.fatec.app.modules.v1.usuario.entity.UsuarioEntity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity(name = "requisicao")
@@ -27,14 +28,14 @@ public class RequisicaoEntity {
     )
     private Date dataSolicitacao;
 
-    @ManyToOne
-    private MaterialEntity material;
-
-    @Column(
-            name = "quantidade",
-            nullable = false
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
     )
-    private float quantidade;
+    @JoinColumn(
+            name = "idItemRequisicao"
+    )
+    private List<ItemRequisicaoEntity> itens;
 
     @ManyToOne
     private UsuarioEntity atendente;
@@ -82,22 +83,6 @@ public class RequisicaoEntity {
 
     public void setDataSolicitacao(Date dataSolicitacao) {
         this.dataSolicitacao = dataSolicitacao;
-    }
-
-    public MaterialEntity getMaterial() {
-        return this.material;
-    }
-
-    public void setMaterial(MaterialEntity material) {
-        this.material = material;
-    }
-
-    public float getQuantidade() {
-        return this.quantidade;
-    }
-
-    public void setQuantidade(float quantidade) {
-        this.quantidade = quantidade;
     }
 
     public UsuarioEntity getAtendente() {

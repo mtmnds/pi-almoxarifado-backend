@@ -1,7 +1,6 @@
-package br.fatec.app.modules.v1.estoque.entity;
+package br.fatec.app.modules.v1.recebimento.entity;
 
 
-import br.fatec.app.modules.v1.localestoque.entity.LocalEstoqueEntity;
 import br.fatec.app.modules.v1.material.entity.MaterialEntity;
 import br.fatec.app.modules.v1.usuario.entity.UsuarioEntity;
 
@@ -9,15 +8,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 
-@Entity(name = "estoque")
-public class EstoqueEntity {
+@Entity(name = "itemNotaFiscal")
+public class ItemNotaFiscalEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
-    @ManyToOne
-    private LocalEstoqueEntity localEstoque;
 
     @ManyToOne
     private MaterialEntity material;
@@ -41,14 +37,6 @@ public class EstoqueEntity {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public LocalEstoqueEntity getLocalEstoque() {
-        return this.localEstoque;
-    }
-
-    public void setLocalEstoque(LocalEstoqueEntity localEstoque) {
-        this.localEstoque = localEstoque;
     }
 
     public MaterialEntity getMaterial() {

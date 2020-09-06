@@ -1,4 +1,4 @@
-package br.fatec.app.modules.v1.recebimento.entity;
+package br.fatec.app.modules.v1.requisicao.entity;
 
 
 import br.fatec.app.modules.v1.material.entity.MaterialEntity;
@@ -8,15 +8,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 
-@Entity(name = "recebimento")
-public class RecebimentoEntity {
+@Entity(name = "itemRequisicao")
+public class ItemRequisicaoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
-    @ManyToOne
-    private NotaFiscalEntity notaFiscal;
 
     @ManyToOne
     private MaterialEntity material;
@@ -40,14 +37,6 @@ public class RecebimentoEntity {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public NotaFiscalEntity getNotaFiscal() {
-        return this.notaFiscal;
-    }
-
-    public void setNotaFiscal(NotaFiscalEntity notaFiscal) {
-        this.notaFiscal = notaFiscal;
     }
 
     public MaterialEntity getMaterial() {
@@ -75,3 +64,4 @@ public class RecebimentoEntity {
     }
 
 }
+

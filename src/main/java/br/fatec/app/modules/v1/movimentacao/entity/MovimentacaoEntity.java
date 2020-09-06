@@ -32,6 +32,15 @@ public class MovimentacaoEntity {
     private float quantidade;
 
     @Column(
+            name = "dataMovimentacao",
+            nullable = false
+    )
+    private Date dataMovimentacao;
+
+    @ManyToOne
+    private UsuarioEntity usuarioMovimentacao;
+
+    @Column(
             name = "ativo",
             nullable = false
     )
@@ -76,6 +85,22 @@ public class MovimentacaoEntity {
 
     public void setQuantidade(float quantidade) {
         this.quantidade = quantidade;
+    }
+
+    public Date getDataMovimentacao() {
+        return this.dataMovimentacao;
+    }
+
+    public void setDataMovimentacao(Date dataMovimentacao) {
+        this.dataMovimentacao = dataMovimentacao;
+    }
+
+    public UsuarioEntity getUsuarioMovimentacao() {
+        return this.usuarioMovimentacao;
+    }
+
+    public void setUsuarioMovimentacao(UsuarioEntity usuarioMovimentacao) {
+        this.usuarioMovimentacao = usuarioMovimentacao;
     }
 
     public boolean isAtivo() {
