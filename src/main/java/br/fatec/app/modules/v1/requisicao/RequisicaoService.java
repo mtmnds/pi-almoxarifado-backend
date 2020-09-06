@@ -10,12 +10,16 @@ public class RequisicaoService {
 
     private RequisicaoRepository requisicaoRepository;
 
+    private ItemRequisicaoRepository itemRequisicaoRepository;
+
 
     @Autowired
     public RequisicaoService(
-            RequisicaoRepository requisicaoRepository
+            RequisicaoRepository requisicaoRepository,
+            ItemRequisicaoRepository itemRequisicaoRepository
     ) {
         this.requisicaoRepository = requisicaoRepository;
+        this.itemRequisicaoRepository = itemRequisicaoRepository;
     }
 
 }

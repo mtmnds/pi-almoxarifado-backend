@@ -1,4 +1,4 @@
-package br.fatec.app.modules.v1.menu;
+package br.fatec.app.modules.v1.tela;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api/v1/menu")
-public class MenuController {
+public class TelaController {
 
-    private MenuService menuService;
+    private TelaService telaService;
 
 
     @Autowired
-    public MenuController(
-            MenuService menuService
+    public TelaController(
+            TelaService telaService
     ) {
-        this.menuService = menuService;
+        this.telaService = telaService;
     }
 
 }

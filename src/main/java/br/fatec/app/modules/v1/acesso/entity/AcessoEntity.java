@@ -1,7 +1,7 @@
 package br.fatec.app.modules.v1.acesso.entity;
 
 
-import br.fatec.app.modules.v1.menu.entity.MenuEntity;
+import br.fatec.app.modules.v1.tela.entity.TelaEntity;
 import br.fatec.app.modules.v1.perfil.entity.PerfilEntity;
 import br.fatec.app.modules.v1.usuario.entity.UsuarioEntity;
 
@@ -20,22 +20,13 @@ public class AcessoEntity {
     private PerfilEntity perfil;
 
     @ManyToOne
-    private MenuEntity menu;
+    private TelaEntity tela;
 
     @Column(
             name = "ativo",
             nullable = false
     )
     private boolean ativo;
-
-    @Column(
-            name = "dataCadastro",
-            nullable = false
-    )
-    private Date dataCadastro;
-
-    @ManyToOne
-    private UsuarioEntity usuarioCadastro;
 
 
     public long getId() {
@@ -54,12 +45,12 @@ public class AcessoEntity {
         this.perfil = perfil;
     }
 
-    public MenuEntity getMenu() {
-        return this.menu;
+    public TelaEntity getTela() {
+        return this.tela;
     }
 
-    public void setMenu(MenuEntity menu) {
-        this.menu = menu;
+    public void setTela(TelaEntity tela) {
+        this.tela = tela;
     }
 
     public boolean isAtivo() {
@@ -68,22 +59,6 @@ public class AcessoEntity {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
-    }
-
-    public Date getDataCadastro() {
-        return this.dataCadastro;
-    }
-
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
-
-    public UsuarioEntity getUsuarioCadastro() {
-        return this.usuarioCadastro;
-    }
-
-    public void setUsuarioCadastro(UsuarioEntity usuarioCadastro) {
-        this.usuarioCadastro = usuarioCadastro;
     }
 
 }

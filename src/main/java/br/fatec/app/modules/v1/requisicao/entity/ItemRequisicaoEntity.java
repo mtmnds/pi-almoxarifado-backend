@@ -1,4 +1,4 @@
-package br.fatec.app.modules.v1.recebimento.entity;
+package br.fatec.app.modules.v1.requisicao.entity;
 
 
 import br.fatec.app.modules.v1.material.entity.MaterialEntity;
@@ -8,15 +8,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 
-@Entity(name = "recebimento")
-public class RecebimentoEntity {
+@Entity(name = "itemRequisicao")
+public class ItemRequisicaoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
-    @ManyToOne
-    private NotaFiscalEntity notaFiscal;
 
     @ManyToOne
     private MaterialEntity material;
@@ -33,15 +30,6 @@ public class RecebimentoEntity {
     )
     private boolean ativo;
 
-    @Column(
-            name = "dataCadastro",
-            nullable = false
-    )
-    private Date dataCadastro;
-
-    @ManyToOne
-    private UsuarioEntity usuarioCadastro;
-
 
     public long getId() {
         return this.id;
@@ -49,14 +37,6 @@ public class RecebimentoEntity {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public NotaFiscalEntity getNotaFiscal() {
-        return this.notaFiscal;
-    }
-
-    public void setNotaFiscal(NotaFiscalEntity notaFiscal) {
-        this.notaFiscal = notaFiscal;
     }
 
     public MaterialEntity getMaterial() {
@@ -83,20 +63,5 @@ public class RecebimentoEntity {
         this.ativo = ativo;
     }
 
-    public Date getDataCadastro() {
-        return this.dataCadastro;
-    }
-
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
-
-    public UsuarioEntity getUsuarioCadastro() {
-        return this.usuarioCadastro;
-    }
-
-    public void setUsuarioCadastro(UsuarioEntity usuarioCadastro) {
-        this.usuarioCadastro = usuarioCadastro;
-    }
-
 }
+

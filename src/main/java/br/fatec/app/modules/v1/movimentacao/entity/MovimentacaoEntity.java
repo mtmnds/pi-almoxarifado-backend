@@ -32,19 +32,19 @@ public class MovimentacaoEntity {
     private float quantidade;
 
     @Column(
+            name = "dataMovimentacao",
+            nullable = false
+    )
+    private Date dataMovimentacao;
+
+    @ManyToOne
+    private UsuarioEntity usuarioMovimentacao;
+
+    @Column(
             name = "ativo",
             nullable = false
     )
     private boolean ativo;
-
-    @Column(
-            name = "dataCadastro",
-            nullable = false
-    )
-    private Date dataCadastro;
-
-    @ManyToOne
-    private UsuarioEntity usuarioCadastro;
 
 
     public long getId() {
@@ -87,28 +87,28 @@ public class MovimentacaoEntity {
         this.quantidade = quantidade;
     }
 
+    public Date getDataMovimentacao() {
+        return this.dataMovimentacao;
+    }
+
+    public void setDataMovimentacao(Date dataMovimentacao) {
+        this.dataMovimentacao = dataMovimentacao;
+    }
+
+    public UsuarioEntity getUsuarioMovimentacao() {
+        return this.usuarioMovimentacao;
+    }
+
+    public void setUsuarioMovimentacao(UsuarioEntity usuarioMovimentacao) {
+        this.usuarioMovimentacao = usuarioMovimentacao;
+    }
+
     public boolean isAtivo() {
         return this.ativo;
     }
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
-    }
-
-    public Date getDataCadastro() {
-        return this.dataCadastro;
-    }
-
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
-
-    public UsuarioEntity getUsuarioCadastro() {
-        return this.usuarioCadastro;
-    }
-
-    public void setUsuarioCadastro(UsuarioEntity usuarioCadastro) {
-        this.usuarioCadastro = usuarioCadastro;
     }
 
 }
