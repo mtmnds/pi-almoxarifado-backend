@@ -1,37 +1,30 @@
-package br.fatec.app.modules.v1.inventario.entity;
+package br.fatec.app.modules.v1.saldo.entity;
+
 
 import br.fatec.app.modules.v1.localestoque.entity.LocalEstoqueEntity;
 import br.fatec.app.modules.v1.material.entity.MaterialEntity;
-import br.fatec.app.modules.v1.usuario.entity.UsuarioEntity;
 
 import javax.persistence.*;
-import java.util.Date;
 
 
-@Entity(name = "itemInventario")
-public class ItemInventarioEntity {
+@Entity(name = "estoque")
+public class SaldoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @ManyToOne
-    private InventarioEntity inventario;
+    private LocalEstoqueEntity localEstoque;
 
     @ManyToOne
     private MaterialEntity material;
-
-    @ManyToOne
-    private LocalEstoqueEntity localEstoque;
 
     @Column(
             name = "quantidade",
             nullable = false
     )
     private float quantidade;
-
-    @ManyToOne
-    private UsuarioEntity usuarioContagem;
 
     @Column(
             name = "ativo",
@@ -48,12 +41,12 @@ public class ItemInventarioEntity {
         this.id = id;
     }
 
-    public InventarioEntity getInventario() {
-        return this.inventario;
+    public LocalEstoqueEntity getLocalEstoque() {
+        return this.localEstoque;
     }
 
-    public void setInventario(InventarioEntity inventario) {
-        this.inventario = inventario;
+    public void setLocalEstoque(LocalEstoqueEntity localEstoque) {
+        this.localEstoque = localEstoque;
     }
 
     public MaterialEntity getMaterial() {
@@ -64,28 +57,12 @@ public class ItemInventarioEntity {
         this.material = material;
     }
 
-    public LocalEstoqueEntity getLocalEstoque() {
-        return this.localEstoque;
-    }
-
-    public void setLocalEstoque(LocalEstoqueEntity localEstoque) {
-        this.localEstoque = localEstoque;
-    }
-
     public float getQuantidade() {
         return this.quantidade;
     }
 
     public void setQuantidade(float quantidade) {
         this.quantidade = quantidade;
-    }
-
-    public UsuarioEntity getUsuarioContagem() {
-        return this.usuarioContagem;
-    }
-
-    public void setUsuarioContagem(UsuarioEntity usuarioContagem) {
-        this.usuarioContagem = usuarioContagem;
     }
 
     public boolean isAtivo() {

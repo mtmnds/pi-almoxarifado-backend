@@ -1,4 +1,4 @@
-package br.fatec.app.modules.v1.estoque;
+package br.fatec.app.modules.v1.saldo;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api/v1/estoque")
-public class EstoqueController {
+public class SaldoController {
 
-    private EstoqueService estoqueService;
+    private SaldoService saldoService;
 
 
     @Autowired
-    public EstoqueController(
-            EstoqueService estoqueService
+    public SaldoController(
+            SaldoService saldoService
     ) {
-        this.estoqueService = estoqueService;
+        this.saldoService = saldoService;
     }
 
 }

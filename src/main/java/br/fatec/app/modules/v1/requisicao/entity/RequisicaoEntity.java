@@ -6,6 +6,7 @@ import br.fatec.app.modules.v1.usuario.entity.UsuarioEntity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity(name = "requisicao")
@@ -27,14 +28,14 @@ public class RequisicaoEntity {
     )
     private Date dataSolicitacao;
 
-    @ManyToOne
-    private MaterialEntity material;
-
-    @Column(
-            name = "quantidade",
-            nullable = false
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
     )
-    private float quantidade;
+    @JoinColumn(
+            name = "idItemRequisicao"
+    )
+    private List<ItemRequisicaoEntity> itens;
 
     @ManyToOne
     private UsuarioEntity atendente;
@@ -50,15 +51,6 @@ public class RequisicaoEntity {
             nullable = false
     )
     private boolean ativo;
-
-    @Column(
-            name = "dataCadastro",
-            nullable = false
-    )
-    private Date dataCadastro;
-
-    @ManyToOne
-    private UsuarioEntity usuarioCadastro;
 
 
     public long getId() {
@@ -93,22 +85,6 @@ public class RequisicaoEntity {
         this.dataSolicitacao = dataSolicitacao;
     }
 
-    public MaterialEntity getMaterial() {
-        return this.material;
-    }
-
-    public void setMaterial(MaterialEntity material) {
-        this.material = material;
-    }
-
-    public float getQuantidade() {
-        return this.quantidade;
-    }
-
-    public void setQuantidade(float quantidade) {
-        this.quantidade = quantidade;
-    }
-
     public UsuarioEntity getAtendente() {
         return this.atendente;
     }
@@ -133,19 +109,4 @@ public class RequisicaoEntity {
         this.ativo = ativo;
     }
 
-    public Date getDataCadastro() {
-        return this.dataCadastro;
-    }
-
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
-
-    public UsuarioEntity getUsuarioCadastro() {
-        return this.usuarioCadastro;
-    }
-
-    public void setUsuarioCadastro(UsuarioEntity usuarioCadastro) {
-        this.usuarioCadastro = usuarioCadastro;
-    }
 }

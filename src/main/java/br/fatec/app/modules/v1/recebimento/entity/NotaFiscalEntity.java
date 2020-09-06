@@ -5,6 +5,7 @@ import br.fatec.app.modules.v1.usuario.entity.UsuarioEntity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity(name = "notaFiscal")
@@ -27,22 +28,22 @@ public class NotaFiscalEntity {
     private int serie;
 
     @ManyToOne
-    private FornecedorEntity fornecedorEntity;
+    private FornecedorEntity fornecedor;
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JoinColumn(
+            name = "idNotaFiscal"
+    )
+    private List<ItemNotaFiscalEntity> itens;
 
     @Column(
             name = "ativo",
             nullable = false
     )
     private boolean ativo;
-
-    @Column(
-            name = "dataCadastro",
-            nullable = false
-    )
-    private Date dataCadastro;
-
-    @ManyToOne
-    private UsuarioEntity usuarioCadastro;
 
 
     public long getId() {
@@ -69,12 +70,12 @@ public class NotaFiscalEntity {
         this.serie = serie;
     }
 
-    public FornecedorEntity getFornecedorEntity() {
-        return this.fornecedorEntity;
+    public FornecedorEntity getFornecedor() {
+        return this.fornecedor;
     }
 
-    public void setFornecedorEntity(FornecedorEntity fornecedorEntity) {
-        this.fornecedorEntity = fornecedorEntity;
+    public void setFornecedor(FornecedorEntity fornecedor) {
+        this.fornecedor = fornecedor;
     }
 
     public boolean isAtivo() {
@@ -84,22 +85,5 @@ public class NotaFiscalEntity {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-
-    public Date getDataCadastro() {
-        return this.dataCadastro;
-    }
-
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
-
-    public UsuarioEntity getUsuarioCadastro() {
-        return this.usuarioCadastro;
-    }
-
-    public void setUsuarioCadastro(UsuarioEntity usuarioCadastro) {
-        this.usuarioCadastro = usuarioCadastro;
-    }
-
 
 }

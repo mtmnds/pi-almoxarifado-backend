@@ -1,4 +1,4 @@
-package br.fatec.app.modules.v1.menu.entity;
+package br.fatec.app.modules.v1.tela.entity;
 
 
 import br.fatec.app.modules.v1.usuario.entity.UsuarioEntity;
@@ -8,7 +8,7 @@ import java.util.Date;
 
 
 @Entity(name = "menu")
-public class MenuEntity {
+public class TelaEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,15 +31,6 @@ public class MenuEntity {
             nullable = false
     )
     private boolean ativo;
-
-    @Column(
-            name = "dataCadastro",
-            nullable = false
-    )
-    private Date dataCadastro;
-
-    @ManyToOne
-    private UsuarioEntity usuarioCadastro;
 
 
     public long getId() {
@@ -74,19 +65,4 @@ public class MenuEntity {
         this.ativo = ativo;
     }
 
-    public Date getDataCadastro() {
-        return this.dataCadastro;
-    }
-
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
-
-    public UsuarioEntity getUsuarioCadastro() {
-        return this.usuarioCadastro;
-    }
-
-    public void setUsuarioCadastro(UsuarioEntity usuarioCadastro) {
-        this.usuarioCadastro = usuarioCadastro;
-    }
 }

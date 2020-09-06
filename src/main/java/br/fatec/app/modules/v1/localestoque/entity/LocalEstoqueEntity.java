@@ -32,15 +32,6 @@ public class LocalEstoqueEntity {
     )
     private boolean ativo;
 
-    @Column(
-            name = "dataCadastro",
-            nullable = false
-    )
-    private Date dataCadastro;
-
-    @ManyToOne
-    private UsuarioEntity usuarioCadastro;
-
 
     public long getId() {
         return this.id;
@@ -72,22 +63,6 @@ public class LocalEstoqueEntity {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
-    }
-
-    public Date getDataCadastro() {
-        return this.dataCadastro;
-    }
-
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
-
-    public UsuarioEntity getUsuarioCadastro() {
-        return this.usuarioCadastro;
-    }
-
-    public void setUsuarioCadastro(UsuarioEntity usuarioCadastro) {
-        this.usuarioCadastro = usuarioCadastro;
     }
 
 }

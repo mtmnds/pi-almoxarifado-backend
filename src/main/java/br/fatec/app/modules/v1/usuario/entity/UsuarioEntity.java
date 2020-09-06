@@ -1,6 +1,8 @@
 package br.fatec.app.modules.v1.usuario.entity;
 
 
+import br.fatec.app.modules.v1.perfil.entity.PerfilEntity;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -36,20 +38,14 @@ public class UsuarioEntity {
     )
     private String senha;
 
+    @ManyToOne
+    private PerfilEntity perfil;
+
     @Column(
             name = "ativo",
             nullable = false
     )
     private boolean ativo;
-
-    @Column(
-            name = "dataCadastro",
-            nullable = false
-    )
-    private Date dataCadastro;
-
-    @ManyToOne
-    private UsuarioEntity usuarioCadastro;
 
 
     public long getId() {
@@ -92,28 +88,20 @@ public class UsuarioEntity {
         this.senha = senha;
     }
 
+    public PerfilEntity getPerfil() {
+        return this.perfil;
+    }
+
+    public void setPerfil(PerfilEntity perfil) {
+        this.perfil = perfil;
+    }
+
     public boolean isAtivo() {
         return this.ativo;
     }
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
-    }
-
-    public Date getDataCadastro() {
-        return this.dataCadastro;
-    }
-
-    public void setDataCadastro(Date dataCadastro) {
-        this.dataCadastro = dataCadastro;
-    }
-
-    public UsuarioEntity getUsuarioCadastro() {
-        return this.usuarioCadastro;
-    }
-
-    public void setUsuarioCadastro(UsuarioEntity usuarioCadastro) {
-        this.usuarioCadastro = usuarioCadastro;
     }
 
 }

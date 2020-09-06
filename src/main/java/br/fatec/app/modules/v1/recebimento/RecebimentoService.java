@@ -8,14 +8,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class RecebimentoService {
 
-    private RecebimentoRepository recebimentoRepository;
+    private NotaFiscalRepository notaFiscalRepository;
+
+    private ItemNotaFiscalRepository itemNotaFiscalRepository;
 
 
     @Autowired
     public RecebimentoService(
-            RecebimentoRepository recebimentoRepository
+            NotaFiscalRepository notaFiscalRepository,
+            ItemNotaFiscalRepository itemNotaFiscalRepository
     ) {
-        this.recebimentoRepository = recebimentoRepository;
+        this.notaFiscalRepository = notaFiscalRepository;
+        this.itemNotaFiscalRepository = itemNotaFiscalRepository;
     }
 
 }
