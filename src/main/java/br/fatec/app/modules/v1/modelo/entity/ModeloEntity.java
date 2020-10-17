@@ -22,6 +22,7 @@ public class ModeloEntity {
     private String nome;
 
     @ManyToOne
+    @JoinColumn(name ="MARCA_ID")
     private MarcaEntity marca;
 
     @Column(
