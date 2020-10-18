@@ -39,6 +39,7 @@ public class UsuarioEntity {
     private String senha;
 
     @ManyToOne
+    @JoinColumn(name ="PERFIL_ID")
     private PerfilEntity perfil;
 
     @Column(
