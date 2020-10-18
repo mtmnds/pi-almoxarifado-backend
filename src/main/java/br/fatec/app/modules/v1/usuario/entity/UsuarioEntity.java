@@ -28,7 +28,8 @@ public class UsuarioEntity {
 
     @Column(
             name = "email",
-            nullable = false
+            nullable = false,
+            unique = true
     )
     private String email;
 
