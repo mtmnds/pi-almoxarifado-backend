@@ -28,6 +28,7 @@ public class MaterialEntity {
     private String codigo;
 
     @ManyToOne
+    @JoinColumn(name ="MODELO_ID")
     private ModeloEntity modelo;
 
     @Column(

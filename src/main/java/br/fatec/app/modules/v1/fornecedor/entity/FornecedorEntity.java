@@ -27,20 +27,26 @@ public class FornecedorEntity {
     private String nome;
 
     @Column(
-            name = "telefone",
+            name = "endereco",
             nullable = false
+    )
+    private String endereco;
+
+    @Column(
+            name = "telefone",
+            nullable = true
     )
     private String telefone;
 
     @Column(
             name = "celular",
-            nullable = false
+            nullable = true
     )
     private String celular;
 
     @Column(
             name = "email",
-            nullable = false
+            nullable = true
     )
     private String email;
 
@@ -73,6 +79,14 @@ public class FornecedorEntity {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getEndereco() {
+        return this.endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public String getTelefone() {

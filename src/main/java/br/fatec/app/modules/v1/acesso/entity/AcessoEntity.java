@@ -17,9 +17,11 @@ public class AcessoEntity {
     private long id;
 
     @ManyToOne
+    @JoinColumn(name ="PERFIL_ID")
     private PerfilEntity perfil;
 
     @ManyToOne
+    @JoinColumn(name ="TELA_ID")
     private TelaEntity tela;
 
     @Column(

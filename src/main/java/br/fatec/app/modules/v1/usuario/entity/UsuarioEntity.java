@@ -28,7 +28,8 @@ public class UsuarioEntity {
 
     @Column(
             name = "email",
-            nullable = false
+            nullable = false,
+            unique = true
     )
     private String email;
 
@@ -39,6 +40,7 @@ public class UsuarioEntity {
     private String senha;
 
     @ManyToOne
+    @JoinColumn(name ="PERFIL_ID")
     private PerfilEntity perfil;
 
     @Column(
