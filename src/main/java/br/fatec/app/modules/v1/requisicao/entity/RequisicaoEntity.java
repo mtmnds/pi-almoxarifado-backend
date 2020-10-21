@@ -109,4 +109,11 @@ public class RequisicaoEntity {
         this.ativo = ativo;
     }
 
+    public List<ItemRequisicaoEntity> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<ItemRequisicaoEntity> itens) {
+        this.itens = itens;
+    }
 }
