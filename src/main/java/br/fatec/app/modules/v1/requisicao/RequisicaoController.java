@@ -1,6 +1,7 @@
 package br.fatec.app.modules.v1.requisicao;
 
 
+import br.fatec.app.modules.v1.requisicao.dto.AprovarRequisicaoDTO;
 import br.fatec.app.modules.v1.requisicao.entity.RequisicaoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -60,14 +61,14 @@ public class RequisicaoController {
     }
 
 
-    /*@RequestMapping(
+    @RequestMapping(
             method = RequestMethod.GET,
-            value = "/{idUsuario}",
+            value = "/{idRequisicao}",
             produces = "application/json"
     )
-    public ResponseEntity<UsuarioEntity> buscarUsuario(@PathVariable("idUsuario") long idUsuario) {
+    public ResponseEntity<RequisicaoEntity> buscarRequisicao(@PathVariable("idRequisicao") long idRequisicao) {
         try {
-            UsuarioEntity resposta = this.usuarioService.buscarUsuario(idUsuario);
+            RequisicaoEntity resposta = this.requisicaoService.buscarRequisicao(idRequisicao);
             return ResponseEntity.ok(resposta);
 
         }
@@ -82,9 +83,9 @@ public class RequisicaoController {
             value = {"", "/"},
             produces = "application/json"
     )
-    public ResponseEntity<List<UsuarioEntity>> listarTodosUsuarios() {
+    public ResponseEntity<List<RequisicaoEntity>> listarTodasRequisicoes() {
         try {
-            List<UsuarioEntity> resposta = this.usuarioService.listarTodosUsuarios();
+            List<RequisicaoEntity> resposta = this.requisicaoService.listarTodasRequisicoes();
             return ResponseEntity.ok(resposta);
 
         }
@@ -96,18 +97,41 @@ public class RequisicaoController {
 
     @RequestMapping(
             method = RequestMethod.DELETE,
-            value = "/{idUsuario}",
+            value = "/{idRequisicao}",
             produces = "application/json"
     )
-    public ResponseEntity<UsuarioEntity> desativarUsuario(@PathVariable("idUsuario") long idUsuario) {
+    public ResponseEntity<RequisicaoEntity> cancelarRequisicao(@PathVariable("idRequisicao") long idRequisicao) {
         try {
-            this.usuarioService.desativarUsuario(idUsuario);
+            this.requisicaoService.cancelarRequisicao(idRequisicao);
             return ResponseEntity.ok().build();
 
         }
         catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
-    }*/
+    }
+
+
+    @RequestMapping(
+            method = RequestMethod.POST,
+            value = "/aprovacao",
+            consumes = "application/json",
+            produces = "application/json"
+    )
+    public ResponseEntity<RequisicaoEntity> aprovarRequisicao(@RequestBody AprovarRequisicaoDTO aprovarRequisicaoDTO) {
+        try {
+            this.requisicaoService.aprovarRequisicao(
+                    aprovarRequisicaoDTO.getIdRequisicao(),
+                    aprovarRequisicaoDTO.getIdUsuarioAtendente()
+            );
+
+            return ResponseEntity.ok().build();
+
+        }
+        catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
 
 }
