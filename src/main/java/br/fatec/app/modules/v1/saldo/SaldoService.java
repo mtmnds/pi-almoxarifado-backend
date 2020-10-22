@@ -7,6 +7,7 @@ import br.fatec.app.modules.v1.material.MaterialRepository;
 import br.fatec.app.modules.v1.material.entity.MaterialEntity;
 import br.fatec.app.modules.v1.saldo.entity.SaldoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.html.Option;
@@ -35,33 +36,42 @@ public class SaldoService {
     }
 
 
-    public void incrementarSaldo(long idMaterial, long idLocalEstoque, long quantidade) {
+    public void incrementarSaldo(MaterialEntity material, LocalEstoqueEntity localEstoque, float quantidade) {
         Optional<SaldoEntity> saldoAtualOp = this.saldoRepository.findByIdMaterialAndIdLocalEstoque(
-                idMaterial,
-                idLocalEstoque
+                material.getId(),
+                localEstoque.getId()
         );
 
         if (saldoAtualOp.isPresent()) {
             SaldoEntity saldoAtual = saldoAtualOp.get();
             saldoAtual.setQuantidade(saldoAtual.getQuantidade() + quantidade);
             this.saldoRepository.save(saldoAtual);
+
         }
         else {
-            Optional<MaterialEntity> materialOp = this.materialRepository.findById(idMaterial);
-            Optional<LocalEstoqueEntity> localEstoqueOp = this.localEstoqueRepository.findById(idLocalEstoque);
+            SaldoEntity saldoEntity = new SaldoEntity();
+            saldoEntity.setAtivo(true);
+            saldoEntity.setMaterial(material);
+            saldoEntity.setLocalEstoque(localEstoque);
+            saldoEntity.setQuantidade(quantidade);
+            this.saldoRepository.save(saldoEntity);
 
-            if (materialOp.isPresent() && localEstoqueOp.isPresent()) {
-                MaterialEntity materialEntity = materialOp.get();
-                LocalEstoqueEntity localEstoqueEntity = localEstoqueOp.get();
-
-                SaldoEntity saldoEntity = new SaldoEntity();
-                saldoEntity.setAtivo(true);
-                saldoEntity.setMaterial(materialEntity);
-                saldoEntity.setLocalEstoque(localEstoqueEntity);
-                saldoEntity.setQuantidade(quantidade);
-                this.saldoRepository.save(saldoEntity);
-            }
         }
+    }
+
+
+    public SaldoEntity buscarSaldo(LocalEstoqueEntity localEstoque, MaterialEntity material) {
+        Optional<SaldoEntity> saldoOp = this.saldoRepository.findByIdMaterialAndIdLocalEstoque(
+                material.getId(),
+                localEstoque.getId()
+        );
+
+        return saldoOp.orElse(null);
+    }
+
+
+    public void atualizarSaldo(SaldoEntity saldoEntity) {
+        this.saldoRepository.save(saldoEntity);
     }
 
 }

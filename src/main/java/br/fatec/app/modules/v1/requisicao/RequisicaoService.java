@@ -99,13 +99,6 @@ public class RequisicaoService {
             requisicao.setAtendente(usuarioAtendente);
             requisicao.setDataAtendimento(new Date());
             this.requisicaoRepository.save(requisicao);
-
-            for (ItemRequisicaoEntity itemRequisicao : requisicao.getItens()) {
-                // TODO: Criar lógica de decrementar saldo na origem e incrementar no destino
-                // - Criar um local de estoque para o id do técnico, caso ele não tenha ainda
-                // - Definir o local de origem
-                // - Usar o service da movimentação, onde a origem é o local de estoque e o destino o estoque do técnico
-            }
         }
     }
 
