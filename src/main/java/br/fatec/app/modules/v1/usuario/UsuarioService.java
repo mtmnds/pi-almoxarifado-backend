@@ -1,5 +1,6 @@
 package br.fatec.app.modules.v1.usuario;
 
+import br.fatec.app.modules.v1.login.dto.LoginDto;
 import br.fatec.app.modules.v1.usuario.entity.UsuarioEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,16 @@ public class UsuarioService {
 
     public UsuarioEntity buscarUsuario(long idUsuario) {
         Optional<UsuarioEntity> usuario = this.usuarioRepository.findById(idUsuario);
+        return usuario.orElse(null);
+    }
+
+
+    public UsuarioEntity buscarUsuario(LoginDto loginDto) {
+        Optional<UsuarioEntity> usuario = this.usuarioRepository.findByEmailAndSenha(
+                loginDto.getEmail(),
+                loginDto.getSenha()
+        );
+
         return usuario.orElse(null);
     }
 
