@@ -5,7 +5,7 @@ server:
 spring:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
-    hibernate.ddl-auto: create
+    hibernate.ddl-auto: update
 
   datasource:
     url: jdbc:h2:file:C:/SpringBoot/Database/pi-almoxarifado

@@ -33,7 +33,7 @@ public class RequisicaoEntity {
             orphanRemoval = true
     )
     @JoinColumn(
-            name = "idItemRequisicao"
+            name = "idRequisicao"
     )
     private List<ItemRequisicaoEntity> itens;
 
