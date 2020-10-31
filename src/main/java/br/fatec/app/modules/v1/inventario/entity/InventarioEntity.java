@@ -1,10 +1,14 @@
 package br.fatec.app.modules.v1.inventario.entity;
 
 
+import br.fatec.app.modules.v1.inventario.entity.ItemInventarioEntity;
+import br.fatec.app.modules.v1.inventario.entity.ItemInventarioEntity;
+import br.fatec.app.modules.v1.inventario.entity.ItemInventarioEntity;
 import br.fatec.app.modules.v1.usuario.entity.UsuarioEntity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity(name = "inventario")
@@ -38,6 +42,15 @@ public class InventarioEntity {
     )
     private Date dataFim;
 
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JoinColumn(
+            name = "idInventario"
+    )
+    private List<ItemInventarioEntity> itens;
+    
     @ManyToOne
     private UsuarioEntity usuarioCriacao;
 
@@ -94,6 +107,14 @@ public class InventarioEntity {
 
     public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
+    }
+
+    public List<ItemInventarioEntity> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<ItemInventarioEntity> itens) {
+        this.itens = itens;
     }
 
     public UsuarioEntity getUsuarioCriacao() {
