@@ -46,6 +46,23 @@ public class LocalEstoqueController {
 
 
     @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/local-tecnico/{nome-local}",
+            produces = "application/json"
+    )
+    public ResponseEntity<LocalEstoqueEntity> buscarEstoqueTecnico(@PathVariable("nome-local") String nomeLocal) {
+        try {
+            LocalEstoqueEntity resposta = this.localEstoqueService.buscarEstoqueTecnico(nomeLocal);
+            return ResponseEntity.ok(resposta);
+
+        }
+        catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+
+    @RequestMapping(
             method = RequestMethod.PUT,
             value = {"", "/"},
             consumes = "application/json",

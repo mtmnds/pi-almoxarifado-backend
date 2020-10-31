@@ -37,9 +37,9 @@ public class SaldoService {
 
 
     public void incrementarSaldo(MaterialEntity material, LocalEstoqueEntity localEstoque, float quantidade) {
-        Optional<SaldoEntity> saldoAtualOp = this.saldoRepository.findByMaterialAndLocalEstoque(
-                material,
-                localEstoque
+        Optional<SaldoEntity> saldoAtualOp = this.saldoRepository.findByMaterialIdAndLocalEstoqueId(
+                material.getId(),
+                localEstoque.getId()
         );
 
         if (saldoAtualOp.isPresent()) {
@@ -61,9 +61,9 @@ public class SaldoService {
 
 
     public SaldoEntity buscarSaldo(LocalEstoqueEntity localEstoque, MaterialEntity material) {
-        Optional<SaldoEntity> saldoOp = this.saldoRepository.findByMaterialAndLocalEstoque(
-                material,
-                localEstoque
+        Optional<SaldoEntity> saldoOp = this.saldoRepository.findByMaterialIdAndLocalEstoqueId(
+                material.getId(),
+                localEstoque.getId()
         );
 
         return saldoOp.orElse(null);
@@ -71,6 +71,11 @@ public class SaldoService {
 
 
     public void atualizarSaldo(SaldoEntity saldoEntity) {
+        this.saldoRepository.save(saldoEntity);
+    }
+
+
+    public void cadastrar(SaldoEntity saldoEntity) {
         this.saldoRepository.save(saldoEntity);
     }
 

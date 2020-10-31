@@ -39,6 +39,12 @@ public class LocalEstoqueService {
     }
 
 
+    public LocalEstoqueEntity buscarEstoqueTecnico(String nomeLocal) {
+        Optional<LocalEstoqueEntity> localEstoque = this.localEstoqueRepository.findByNome(nomeLocal);
+        return localEstoque.orElse(null);
+    }
+
+
     public List<LocalEstoqueEntity> listarTodosLocaisEstoque() {
         return this.localEstoqueRepository.findAll();
     }
