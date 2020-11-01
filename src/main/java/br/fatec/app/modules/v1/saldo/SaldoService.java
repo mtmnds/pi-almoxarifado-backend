@@ -7,10 +7,9 @@ import br.fatec.app.modules.v1.material.MaterialRepository;
 import br.fatec.app.modules.v1.material.entity.MaterialEntity;
 import br.fatec.app.modules.v1.saldo.entity.SaldoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -67,6 +66,10 @@ public class SaldoService {
         );
 
         return saldoOp.orElse(null);
+    }
+    
+    public List<SaldoEntity> listarTodosSaldoEstoque() {
+    	return this.saldoRepository.findAll();
     }
 
 

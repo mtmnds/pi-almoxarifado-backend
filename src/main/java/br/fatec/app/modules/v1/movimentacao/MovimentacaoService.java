@@ -7,6 +7,8 @@ import br.fatec.app.modules.v1.saldo.entity.SaldoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 import java.util.Date;
 
@@ -77,6 +79,10 @@ public class MovimentacaoService {
         }
 
         return movimentacaoEntity;
+    }
+    
+    public List<MovimentacaoEntity> listarMovimentacoes() {
+    	return this.movimentacaoRepository.findAll();
     }
 
 }
