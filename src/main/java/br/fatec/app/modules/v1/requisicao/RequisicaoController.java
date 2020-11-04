@@ -134,4 +134,26 @@ public class RequisicaoController {
     }
 
 
+    @RequestMapping(
+            method = RequestMethod.POST,
+            value = "/reprovacao",
+            consumes = "application/json",
+            produces = "application/json"
+    )
+    public ResponseEntity<RequisicaoEntity> reprovarRequisicao(@RequestBody AprovarRequisicaoDTO aprovarRequisicaoDTO) {
+        try {
+            this.requisicaoService.reprovarRequisicao(
+                    aprovarRequisicaoDTO.getIdRequisicao(),
+                    aprovarRequisicaoDTO.getIdUsuarioAtendente()
+            );
+
+            return ResponseEntity.ok().build();
+
+        }
+        catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+
 }

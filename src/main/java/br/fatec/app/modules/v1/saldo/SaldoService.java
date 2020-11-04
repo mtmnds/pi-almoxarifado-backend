@@ -7,10 +7,9 @@ import br.fatec.app.modules.v1.material.MaterialRepository;
 import br.fatec.app.modules.v1.material.entity.MaterialEntity;
 import br.fatec.app.modules.v1.saldo.entity.SaldoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -37,9 +36,9 @@ public class SaldoService {
 
 
     public void incrementarSaldo(MaterialEntity material, LocalEstoqueEntity localEstoque, float quantidade) {
-        Optional<SaldoEntity> saldoAtualOp = this.saldoRepository.findByMaterialAndLocalEstoque(
-                material,
-                localEstoque
+        Optional<SaldoEntity> saldoAtualOp = this.saldoRepository.findByMaterialIdAndLocalEstoqueId(
+                material.getId(),
+                localEstoque.getId()
         );
 
         if (saldoAtualOp.isPresent()) {
@@ -61,16 +60,25 @@ public class SaldoService {
 
 
     public SaldoEntity buscarSaldo(LocalEstoqueEntity localEstoque, MaterialEntity material) {
-        Optional<SaldoEntity> saldoOp = this.saldoRepository.findByMaterialAndLocalEstoque(
-                material,
-                localEstoque
+        Optional<SaldoEntity> saldoOp = this.saldoRepository.findByMaterialIdAndLocalEstoqueId(
+                material.getId(),
+                localEstoque.getId()
         );
 
         return saldoOp.orElse(null);
     }
+    
+    public List<SaldoEntity> listarTodosSaldoEstoque() {
+    	return this.saldoRepository.findAll();
+    }
 
 
     public void atualizarSaldo(SaldoEntity saldoEntity) {
+        this.saldoRepository.save(saldoEntity);
+    }
+
+
+    public void cadastrar(SaldoEntity saldoEntity) {
         this.saldoRepository.save(saldoEntity);
     }
 

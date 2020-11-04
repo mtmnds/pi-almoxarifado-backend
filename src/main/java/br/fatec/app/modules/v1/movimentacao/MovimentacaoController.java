@@ -2,7 +2,9 @@ package br.fatec.app.modules.v1.movimentacao;
 
 
 import br.fatec.app.modules.v1.movimentacao.entity.MovimentacaoEntity;
-import br.fatec.app.modules.v1.requisicao.entity.RequisicaoEntity;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,6 +38,21 @@ public class MovimentacaoController {
             MovimentacaoEntity resposta = this.movimentacaoService.movimentarSaldo(movimentacao);
             return ResponseEntity.ok(resposta);
 
+        }
+        catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+    
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = {"", "/"},
+            produces = "application/json"
+    )
+    public ResponseEntity<List<MovimentacaoEntity>> listarTodasMovimentacoes() {
+        try {
+            List<MovimentacaoEntity> resposta = this.movimentacaoService.listarMovimentacoes();
+            return ResponseEntity.ok(resposta);
         }
         catch (Exception ex) {
             return ResponseEntity.badRequest().build();

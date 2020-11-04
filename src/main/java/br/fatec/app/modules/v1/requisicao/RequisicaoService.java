@@ -108,4 +108,22 @@ public class RequisicaoService {
         }
     }
 
+
+    @Transactional
+    public void reprovarRequisicao(long idRequisicao, long idUsuarioAtendente) {
+        Optional<RequisicaoEntity> requisicaoOp = this.requisicaoRepository.findById(idRequisicao);
+        Optional<StatusRequisicaoEntity> statusRequisicaoOp = this.statusRequisicaoRepository.findById(3L);
+        UsuarioEntity usuarioAtendente = this.usuarioService.buscarUsuario(idUsuarioAtendente);
+
+        if (requisicaoOp.isPresent() && statusRequisicaoOp.isPresent() && usuarioAtendente != null) {
+            StatusRequisicaoEntity statusRequisicaoEntity = statusRequisicaoOp.get();
+
+            RequisicaoEntity requisicao = requisicaoOp.get();
+            requisicao.setStatusRequisicao(statusRequisicaoEntity);
+            requisicao.setAtendente(usuarioAtendente);
+            requisicao.setDataAtendimento(new Date());
+            this.requisicaoRepository.save(requisicao);
+        }
+    }
+
 }

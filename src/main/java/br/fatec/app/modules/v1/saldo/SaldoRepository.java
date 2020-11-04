@@ -13,6 +13,6 @@ import java.util.Optional;
 @Repository
 public interface SaldoRepository extends JpaRepository<SaldoEntity, Long> {
 
-    Optional<SaldoEntity> findByMaterialAndLocalEstoque(MaterialEntity idMaterial, LocalEstoqueEntity idLocalEstoque);
+    Optional<SaldoEntity> findByMaterialIdAndLocalEstoqueId(long idMaterial, long idLocalEstoque);
 
 }

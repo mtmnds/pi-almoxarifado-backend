@@ -44,6 +44,12 @@ public class NotaFiscalEntity {
             nullable = false
     )
     private boolean ativo;
+    
+    @Column(
+    		name = "dataRecebimento",
+    		nullable = false
+    )
+    private Date dataRecebimento;
 
 
     public long getId() {
@@ -85,5 +91,21 @@ public class NotaFiscalEntity {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
+    
+	public List<ItemNotaFiscalEntity> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<ItemNotaFiscalEntity> itens) {
+		this.itens = itens;
+	}
+
+	public Date getDataRecebimento() {
+		return dataRecebimento;
+	}
+
+	public void setDataRecebimento(Date dataRecebimento) {
+		this.dataRecebimento = dataRecebimento;
+	}
 
 }
