@@ -73,13 +73,27 @@ public class SaldoService {
     }
 
 
+    public void limparSaldo(LocalEstoqueEntity localEstoque, MaterialEntity material) {
+        Optional<SaldoEntity> saldoOp = this.saldoRepository.findByMaterialIdAndLocalEstoqueId(
+                material.getId(),
+                localEstoque.getId()
+        );
+
+        if (saldoOp.isPresent()) {
+            SaldoEntity saldo = saldoOp.get();
+            saldo.setQuantidade(0);
+            this.saldoRepository.save(saldo);
+        }
+    }
+
+
     public void atualizarSaldo(SaldoEntity saldoEntity) {
         this.saldoRepository.save(saldoEntity);
     }
 
 
     public void cadastrar(SaldoEntity saldoEntity) {
-        this.saldoRepository.save(saldoEntity);
+        this.saldoRepository.saveAndFlush(saldoEntity);
     }
 
 }

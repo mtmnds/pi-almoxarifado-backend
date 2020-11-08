@@ -28,5 +28,6 @@ INSERT INTO STATUS_INVENTARIO (ID, DESCRICAO, ATIVO) VALUES (3, 'Cancelad0', tru
 INSERT INTO TIPO_INVENTARIO (ID, DESCRICAO, ATIVO) VALUES (1, 'Total', true);
 
 -- Cadastro de Local de Estoque
-INSERT INTO LOCALESTOQUE (ID, ATIVO, DESCRICAO, NOME) VALUES (1, true, 'Setor de Recebimento', 'Pendente de Recebimento');
-INSERT INTO LOCALESTOQUE (ID, ATIVO, DESCRICAO, NOME) VALUES (2, true, 'Setor de Recebimento', 'Recebido');
+INSERT INTO LOCALESTOQUE (ID, ATIVO, DESCRICAO, NOME) VALUES (1, true, 'Setor de Recebimento', 'Recebimento');
+INSERT INTO LOCALESTOQUE (ID, ATIVO, DESCRICAO, NOME) VALUES (2, true, 'Setor de Recebimento', 'Pendente de alocação');
+INSERT INTO LOCALESTOQUE (ID, ATIVO, DESCRICAO, NOME) VALUES (3, true, 'Setor de Estoque', 'Inventário');

@@ -44,6 +44,26 @@ public class SaldoController {
             return ResponseEntity.badRequest().build();
         }
     }
+
+    @RequestMapping(
+            method = RequestMethod.POST,
+            value = "/limparSaldo",
+            produces = "application/json",
+            consumes = "application/json"
+    )
+    public ResponseEntity<SaldoEntity> limparSaldo(@RequestBody LimparSaldoDto limparSaldoDto) {
+        try {
+            this.saldoService.limparSaldo(
+                    limparSaldoDto.getLocalEstoque(),
+                    limparSaldoDto.getMaterial()
+            );
+            return ResponseEntity.ok().build();
+
+        }
+        catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
     
     @RequestMapping(
             method = RequestMethod.GET,
