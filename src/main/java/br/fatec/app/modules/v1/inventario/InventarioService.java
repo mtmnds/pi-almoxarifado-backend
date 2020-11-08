@@ -4,10 +4,13 @@ package br.fatec.app.modules.v1.inventario;
 import br.fatec.app.modules.v1.inventario.entity.InventarioEntity;
 import br.fatec.app.modules.v1.inventario.entity.ItemInventarioEntity;
 import br.fatec.app.modules.v1.inventario.entity.StatusInventarioEntity;
+import br.fatec.app.modules.v1.usuario.UsuarioService;
+import br.fatec.app.modules.v1.usuario.entity.UsuarioEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +23,9 @@ public class InventarioService {
     private ItemInventarioRepository itemInventarioRepository;
 
     private StatusInventarioRepository statusInventarioRepository;
+
+    private UsuarioService usuarioService;
+
 
     @Autowired
     public InventarioService(
@@ -79,7 +85,23 @@ public class InventarioService {
 
             InventarioEntity inventario = inventarioOp.get();
             inventario.setStatusInventario(statusInventarioEntity);
+            inventario.setDataFim(new Date());
             this.inventarioRepository.save(inventario);
+        }
+    }
+
+    @Transactional
+    public void reprovarInventario(long idInventario) {
+        Optional<InventarioEntity> requisicaoOp = this.inventarioRepository.findById(idInventario);
+        Optional<StatusInventarioEntity> statusRequisicaoOp = this.statusInventarioRepository.findById(3L);
+
+        if (requisicaoOp.isPresent() && statusRequisicaoOp.isPresent()) {
+            StatusInventarioEntity statusRequisicaoEntity = statusRequisicaoOp.get();
+
+            InventarioEntity requisicao = requisicaoOp.get();
+            requisicao.setStatusInventario(statusRequisicaoEntity);
+            requisicao.setDataFim(new Date());
+            this.inventarioRepository.save(requisicao);
         }
     }
 }

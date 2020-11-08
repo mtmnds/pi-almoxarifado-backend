@@ -50,6 +50,9 @@ public class NotaFiscalEntity {
     		nullable = false
     )
     private Date dataRecebimento;
+    
+    @Transient
+    private UsuarioEntity usuario;
 
 
     public long getId() {
@@ -108,4 +111,11 @@ public class NotaFiscalEntity {
 		this.dataRecebimento = dataRecebimento;
 	}
 
+	public UsuarioEntity getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(UsuarioEntity usuario) {
+		this.usuario = usuario;
+	}
 }

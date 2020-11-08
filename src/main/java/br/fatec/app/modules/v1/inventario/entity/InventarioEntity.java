@@ -31,14 +31,12 @@ public class InventarioEntity {
     private String descricao;
 
     @Column(
-            name = "dataInicio",
-            nullable = false
+            name = "dataInicio"
     )
     private Date dataInicio;
 
     @Column(
-            name = "dataFim",
-            nullable = false
+            name = "dataFim"
     )
     private Date dataFim;
 

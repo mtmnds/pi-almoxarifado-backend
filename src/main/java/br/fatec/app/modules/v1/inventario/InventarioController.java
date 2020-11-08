@@ -131,4 +131,24 @@ public class InventarioController {
         }
     }
 
+    @RequestMapping(
+            method = RequestMethod.POST,
+            value = "/reprovacao",
+            consumes = "application/json",
+            produces = "application/json"
+    )
+    public ResponseEntity<InventarioEntity> reprovarInventario(@RequestBody AprovarInventarioDTO aprovarInventarioDTO) {
+        try {
+            this.inventarioService.reprovarInventario(
+                    aprovarInventarioDTO.getIdInventario()
+            );
+
+            return ResponseEntity.ok().build();
+
+        }
+        catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
 }
