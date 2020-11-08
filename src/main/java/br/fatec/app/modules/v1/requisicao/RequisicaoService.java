@@ -84,13 +84,6 @@ public class RequisicaoService {
         }
     }
 
-
-    /*
-    * Para aprovar uma requisição é necessário ir no endpoint de movimentação
-    * e gerar uma movimentação de saldo da origem para o destino para cada material
-    * que foi aprovado. Isso é necessário, pois o usuário irá selecionar o local de
-    * estoque de onde o saldo será tirado.
-    */
     @Transactional
     public void aprovarRequisicao(long idRequisicao, long idUsuarioAtendente) {
         Optional<RequisicaoEntity> requisicaoOp = this.requisicaoRepository.findById(idRequisicao);
