@@ -33,7 +33,7 @@ public class RequisicaoEntity {
             orphanRemoval = true
     )
     @JoinColumn(
-            name = "idItemRequisicao"
+            name = "idRequisicao"
     )
     private List<ItemRequisicaoEntity> itens;
 
@@ -109,4 +109,11 @@ public class RequisicaoEntity {
         this.ativo = ativo;
     }
 
+    public List<ItemRequisicaoEntity> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<ItemRequisicaoEntity> itens) {
+        this.itens = itens;
+    }
 }
